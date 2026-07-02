@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: team-goals-crm
+    runtime: node
+    plan: starter          # disk (persistent DB) ke liye paid plan chahiye; free pe data wipe ho jata hai
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATA_DIR
+        value: /var/data
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 1
